@@ -11,7 +11,7 @@ exports.first_job = {
 
     after: {                // Configuring this job to run after this period.
         seconds: 0,
-        minutes: 10,
+        minutes: 5,
         hours: 0,
         days: 0
     },
@@ -27,7 +27,7 @@ exports.second_job = {
 
 	    after: {                // Configuring this job to run after this period.
 	        seconds: 0,
-	        minutes: 15,
+	        minutes: 6,
 	        hours: 0,
 	        days: 0
 	    },
@@ -42,7 +42,7 @@ exports.third_job = {
 
 	    after: {                // Configuring this job to run after this period.
 	        seconds: 0,
-	        minutes: 20,
+	        minutes: 7,
 	        hours: 0,
 	        days: 0
 	    },
@@ -57,7 +57,7 @@ exports.fourth_job = {
 
 	    after: {                // Configuring this job to run after this period.
 	        seconds: 0,
-	        minutes: 25,
+	        minutes: 8,
 	        hours: 0,
 	        days: 0
 	    },
@@ -72,7 +72,7 @@ exports.fifth_job = {
 
 	    after: {                // Configuring this job to run after this period.
 	        seconds: 0,
-	        minutes: 30,
+	        minutes: 9,
 	        hours: 0,
 	        days: 0
 	    },
@@ -87,7 +87,7 @@ exports.sixth_job = {
 
 	    after: {                // Configuring this job to run after this period.
 	        seconds: 0,
-	        minutes: 35,
+	        minutes: 10,
 	        hours: 0,
 	        days: 0
 	    },
