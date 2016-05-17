@@ -11,20 +11,89 @@ exports.first_job = {
 
     after: {                // Configuring this job to run after this period.
         seconds: 0,
-        minutes:30,
+        minutes: 10,
         hours: 0,
         days: 0
     },
     job: function () {
         console.log("first_job");
         waterLevelSensor.mine();
-        streamHeightSensor.mine();
-        streamFlowSensor.mine();
-        waterTemperatureSensor.mine();
-        waveHeightSensor.mine();
-        windSpeedAndDirection.mine();
+        
     },
     spawn: true
 }
 
+exports.second_job = {
 
+	    after: {                // Configuring this job to run after this period.
+	        seconds: 0,
+	        minutes: 15,
+	        hours: 0,
+	        days: 0
+	    },
+	    job: function () {
+	        console.log("second_job");
+	        streamHeightSensor.mine();
+	    },
+	    spawn: true
+	}
+
+exports.third_job = {
+
+	    after: {                // Configuring this job to run after this period.
+	        seconds: 0,
+	        minutes: 20,
+	        hours: 0,
+	        days: 0
+	    },
+	    job: function () {
+	        console.log("third_job");
+	        streamFlowSensor.mine();
+	    },
+	    spawn: true
+	}
+
+exports.fourth_job = {
+
+	    after: {                // Configuring this job to run after this period.
+	        seconds: 0,
+	        minutes: 25,
+	        hours: 0,
+	        days: 0
+	    },
+	    job: function () {
+	        console.log("fourth_job");
+	        waterTemperatureSensor.mine();
+	    },
+	    spawn: true
+	}
+
+exports.fifth_job = {
+
+	    after: {                // Configuring this job to run after this period.
+	        seconds: 0,
+	        minutes: 30,
+	        hours: 0,
+	        days: 0
+	    },
+	    job: function () {
+	        console.log("fifth_job");
+	        waveHeightSensor.mine();
+	    },
+	    spawn: true
+	}
+
+exports.sixth_job = {
+
+	    after: {                // Configuring this job to run after this period.
+	        seconds: 0,
+	        minutes: 35,
+	        hours: 0,
+	        days: 0
+	    },
+	    job: function () {
+	        console.log("sixth_job");
+	        windSpeedAndDirection.mine();
+	    },
+	    spawn: true
+	}

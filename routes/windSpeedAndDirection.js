@@ -5,29 +5,27 @@ var request = require("request");
 
 
 function getSensorData(sensor){
-	
+
 	//var sensor="urn:ioos:station:NOAA.NOS.CO-OPS:9416841";
 	//console.log(sensor);
 	//var avg = 0;
 	var date = new Date();
 	console.log("current date is"+date.getMonth()+1);
-	var myDate = date.toString();
-	var finalDate = (date.getMonth()+1)+"-"+myDate.substr(8,2)+"-"+date.getFullYear();
-	var time = myDate.substr(16,5);
+	var reqDate = new Date();
+	reqDate.setHours(reqDate.getHours() - 7);
+	var finalDate = (date.getMonth()+1)+"-"+reqDate.toISOString().substr(8,2)+"-"+date.getFullYear();
+	var time = reqDate.toISOString().substr(11,5);
 	console.log("time is"+time);
-	
-	date.setHours ( date.getHours() - 7 );	
+
+	date.setHours ( date.getHours() - 7 );
 	//console.log("current date:"+date);
 	var toDate = date.toISOString();	//toISOString gives time in ISO Formatted ISO Time.
 	date.setMinutes( date.getMinutes() - 30 );
 	var fromDate = date.toISOString();
-	console.log(fromDate);
-	console.log(toDate);
-	console.log(sensor + " this is the sensor ");
 	var url = "http://erddap.axiomdatascience.com/erddap/tabledap/cencoos_sensor_service.json?time,depth,station,parameter,unit,value&time>"+
 		fromDate + "&time<" + toDate + "&station=%22" +
 		sensor +
-		"%22&parameter=%22Water%20Level%22&unit=%22ft%22";
+		"%22&parameter=%22Wind%20Speed%22&unit=%22ft%22";
 	console.log(url);
 	request({
 	    url: url,
@@ -35,7 +33,7 @@ function getSensorData(sensor){
 	}, function (error, response, body) {
 		if(response.statusCode==200){
 	   console.log(body.table.rows);
-	   
+
 	   var data = body.table.rows;
 	   var value = 0;
 	   for(var j=0;j<data.length;j++){
@@ -44,9 +42,9 @@ function getSensorData(sensor){
 	   }
 	   var avg = value/data.length;
 	   console.log("am in avg"+avg);
-	   
+
 	   checkInDatabase(sensor,finalDate,time,avg);
-	   
+
 		}
 		else{
 			checkInDatabase(sensor,finalDate,time,0.10);
@@ -62,14 +60,14 @@ function getSensorData(sensor){
 
 function checkInDatabase (sensor,date,time,avgValue){
 	//var fullDate=month+" "+date;
-	
+
 	(function check(){
-	
+
 		mongo.connect(function(err,db){
 			var coll = mongo.collection('windSpeedDataCollection');
 			coll.findOne({"sensorID":sensor,"date":date},function(err,results){
 				if(err){
-					
+
 				}
 				else{
 					if(results==null){
@@ -85,7 +83,7 @@ function checkInDatabase (sensor,date,time,avgValue){
 						});
 					}
 					else{
-						
+
 						results.dateAvg.push({'time':time,'avg':avgValue})
 						console.log(JSON.stringify(results.dateAvg) + " these are the results ");
 						//updateDataToDatabase(sensor,fullDate,results);
@@ -102,7 +100,7 @@ function checkInDatabase (sensor,date,time,avgValue){
 										console.log("failed updating ");
 									}
 							});
-						
+
 					}
 				}
 			});
@@ -113,7 +111,7 @@ function checkInDatabase (sensor,date,time,avgValue){
 
 
 exports.mine = function(){
-	
+
 	var sensorsList= [];
 	mongo.connect(function(err,db){
 		var coll = db.collection("sensorInformation");
@@ -125,11 +123,11 @@ exports.mine = function(){
 			for(i=0;i<sensorsList.length;i++){
 				console.log("Inside for looop");
 				getSensorData(sensorsList[i].sensorID);
-				
+
 			}
 		});
 	});
-	
-	
+
+
 
 }

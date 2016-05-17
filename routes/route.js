@@ -24,10 +24,16 @@ module.exports = function (app)	{
 	cronjob.setJobsPath(__dirname + "/cronJobs.js");
 
 	cronjob.startJob('first_job');
+	cronjob.startJob('second_job');
+	cronjob.startJob('third_job');
+	cronjob.startJob('fourth_job');
+	cronjob.startJob('fifth_job');
+	cronjob.startJob('sixth_job');
 
 	//cronjob.startJob('second_job');
 	
 	//User Get Requests
+	app.get('/test',waterTemperature.mine);
 	app.get('/redirectToUserHome',userGet.redirectToUserHome);
 	app.get('/viewRegisteredSensorsHubs',userGet.viewRegisteredSensorsHubs);
 	app.get('/subscribeToSensorHub',userGet.subscribeToSensorHubPage);

@@ -69,4 +69,26 @@
 		    </a>
 		</div>
 	</div>
+	<div class="row">
+	<div class="span12">
+		<div class="well">
+				<ng-map default-style="true" center="41,-87" zoom="5" >
+					<marker id='{{shop.id}}' position="{{shop.position}}" centered="true"
+						ng-repeat="shop in vm.shops"
+						on-click="vm.showDetail(shop)">
+					</marker>
+
+					<info-window id="foo-iw">
+						<div ng-non-bindable="">
+							sensor: {{vm.shop.id}}<br/>
+							name: {{vm.shop.name}}<br/>
+							source: {{vm.shop.source}}<br/>
+							position: {{vm.map.markers[vm.shop.id].getPosition()}}<br/>
+							<!-- <a href="#" ng-click="vm.clicked()">Click Here</a> -->
+						</div>
+					</info-window>
+				</ng-map>
+		</div>
+	</div>
+</div>
 </div>
