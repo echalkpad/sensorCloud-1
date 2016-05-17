@@ -1,0 +1,72 @@
+<br/>
+<div ng-controller="waveHeightController">
+	<div class="row">
+			<div class="col-sm-2">
+				<p style="font-size:19px">Select sensor hub</p>
+			</div>
+			<div class="col-sm-3">
+		      <select class="form-control" ng-change="getWaveHeightData(sensorHub,'Wave Height and Direction')" ng-model="sensorHub">
+		        <option ng-repeat="sensorHub in sensorHubs" ng-model="sensorHub.sensorHubName">{{sensorHub.sensorHubName}}</option>
+		       </select>
+	       </div>
+	    </div>
+<br/>
+	<div class="row">
+		<div class="col-sm-9">
+			<table class="table table-bordered" style="width:700px;height:100%;">
+				<thead><tr class="active"><th>Wave Height on {{date}}</th></tr></thead>
+			    <tbody><tr>
+				<td><canvas id="lineChart" width="520" height="370"></canvas></td>
+				</tr></tbody>
+			</table>
+		</div>
+		<div class="col-sm-3">
+			<a>
+				<div class="col-lg-3 col-md-6">
+			        <div class="panel panel-green" style="width:200px">
+			            <div class="panel-heading" style="width:200px">
+			                <div class="row">
+			                    <div class="col-xs-3">
+			                    	Minimum Water Level
+			                    </div>
+			                    <div class="col-xs-9 text-right">
+			                       <div class="huge">{{minimum}}</div>
+			                    </div>
+			                </div>
+			            </div>
+			            <a href="#">
+                            <div class="panel-footer" style="width:200px">
+                                <span class="pull-left">{{minimum}}</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+			        </div>
+			    </div>
+		    </a>
+		</div>
+		<div class="col-sm-3">
+			<a>
+				<div class="col-lg-3 col-md-6">
+			        <div class="panel panel-green" style="width:200px">
+			            <div class="panel-heading" style="width:200px">
+			                <div class="row">
+			                    <div class="col-xs-3">
+			                    	Maximum Water Level
+			                    </div>
+			                    <div class="col-xs-9 text-right">
+			                       <div class="huge">{{maximum}}</div>
+			                    </div>
+			                </div>
+			            </div>
+			            <a href="#">
+                            <div class="panel-footer" style="width:200px">
+                                <span class="pull-left">{{maximum}}</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+			        </div>
+			    </div>
+		    </a>
+		</div>
+	</div>
+</div>
